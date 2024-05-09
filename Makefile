@@ -7,7 +7,7 @@ LIBS	=	-Llibft -lft -lm -Lmlx -lmlx
 FRMWRKS	=	-framework OpenGL -framework AppKit
 
 VPATH	:=	src
-SRC		=	main.c
+SRC		=	main.c init.c loop.c input.c
 
 OBJ_DIR	:=	obj
 OBJ		:=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
