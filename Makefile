@@ -2,8 +2,9 @@ NAME	:=	so_long
 
 CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror
-HEADERS	=	-Iinclude -Ilibft
-LIBS	=	-Llibft -lft
+HEADERS	=	-Iinclude -Ilibft -Imlx
+LIBS	=	-Llibft -lft -lm -Lmlx -lmlx
+FRMWRKS	=	-framework OpenGL -framework AppKit
 
 VPATH	:=	src
 SRC		=	main.c
@@ -14,8 +15,8 @@ OBJ		:=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) | libft
-	@$(CC) $(CFLAGS) $(HEADERS) $^ -o $@ $(LIBS)
+$(NAME): $(OBJ) | libft mlx
+	@$(CC) $(CFLAGS) $(HEADERS) $^ -o $@ $(LIBS) $(FRMWRKS)
 	@echo "[$(NAME)] Created binary."
 
 $(OBJ_DIR)/%.o: %.c
@@ -28,8 +29,12 @@ $(OBJ_DIR)/%.o: %.c
 libft:
 	@make -C libft
 
+mlx:
+	@make -C mlx
+
 clean:
 	@make -C libft clean
+	@make -C mlx clean
 	@if [ -d "$(OBJ_DIR)" ]; then \
 		rm -rf $(OBJ_DIR); \
 		echo "[$(NAME)] Removed object files."; \
@@ -44,4 +49,4 @@ fclean: clean
 
 re:	fclean all
 
-.PHONY: all libft clean fclean re
+.PHONY: all libft mlx clean fclean re
