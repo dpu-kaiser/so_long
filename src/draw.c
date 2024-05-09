@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:58:23 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/09 18:05:58 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/09 19:24:37 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int	draw(t_game *game)
 {
+	mlx_clear_window(game->mlx, game->window);
 	if (game->input_direction & UP)
 		mlx_string_put(game->mlx, game->window, 150, 100, 0x00FFFFFF, "^");
 	if (game->input_direction & DOWN)
@@ -27,7 +28,7 @@ int	draw(t_game *game)
 		ft_itoa(game->player.direction.x));
 	mlx_string_put(game->mlx, game->window, 550, 500, 0x00FFFFFF,
 		ft_itoa(game->player.direction.y));
-
-    mlx_pixel_put(game->mlx, game->window, game->player.position.x, game->player.position.y, 0x00FFFF00);
+	mlx_put_image_to_window(game->mlx, game->window, game->player.img,
+		game->player.position.x, game->player.position.y);
 	return (0);
 }

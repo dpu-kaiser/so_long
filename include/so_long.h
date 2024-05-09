@@ -6,12 +6,14 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/09 17:59:42 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/09 19:24:00 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# define PLAYER_MOVE_SPEED 3
 
 # include "libft.h"
 # include "mlx.h"
@@ -36,6 +38,7 @@ typedef struct s_player
 	t_vector	position;
 	t_vector    direction;
 	t_vector	velocity;
+	void *img;
 }				t_player;
 
 typedef struct s_game
