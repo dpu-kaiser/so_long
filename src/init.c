@@ -6,11 +6,10 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:50:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/09 18:37:18 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/10 10:53:44 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "so_long.h"
 
 static void	init_hooks(t_game *game);

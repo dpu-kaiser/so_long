@@ -6,11 +6,10 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:58:23 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/09 19:24:37 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/10 10:53:52 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "so_long.h"
 
 int	draw(t_game *game)
