@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/10 14:55:46 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/10 17:28:23 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define SO_LONG_H
 
 # include "MLX42/MLX42.h"
+# include "fcntl.h"
 # include "libft.h"
 # include "unistd.h"
-# include "fcntl.h"
 
 # define PLAYER_MOVE_SPEED 250
 
@@ -62,7 +62,7 @@ typedef struct s_tilemap
 {
 	t_ivector	grid_size;
 	t_ivector	tile_size;
-	char		**tiles;
+	char		*tiles;
 }				t_tilemap;
 
 typedef struct s_game
@@ -71,7 +71,10 @@ typedef struct s_game
 	void		*window;
 	t_player	player;
 	int			input_direction;
+	t_tilemap	map;
 }				t_game;
+
+int				load_map_from_file(t_tilemap *tilemap, char *filename);
 
 int				init(t_game *game);
 void			loop(void *params);
