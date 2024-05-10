@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:50:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/10 11:49:11 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/10 12:11:01 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	init(t_game *game)
 static void	init_hooks(t_game *game)
 {
 	mlx_loop_hook(game->mlx, loop, game);
-	mlx_key_hook(game->mlx, on_key_down, game);
+	mlx_key_hook(game->mlx, on_key_input, game);
 	/* mlx_hook(game->window, 2, 0, on_key_down, game); */
 	/* mlx_hook(game->window, 3, 0, on_key_up, game); */
 }

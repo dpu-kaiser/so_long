@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/10 11:24:42 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/10 12:11:11 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_game
 int				init(t_game *game);
 void				loop(void *game);
 int				draw(t_game *game);
-void				on_key_down(mlx_key_data_t keydata, void *params);
-int				on_key_up(int keycode, t_game *game);
+void on_key_input(mlx_key_data_t event, void *params);
 
 #endif // SO_LONG_H
