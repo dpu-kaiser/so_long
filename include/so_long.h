@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/10 12:11:11 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/10 12:24:12 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 # define SO_LONG_H
 
 # define PLAYER_MOVE_SPEED 3
-
-# include "../MLX42/include/MLX42/MLX42.h"
+# include "MLX42/MLX42.h"
 # include "libft.h"
 
 enum			e_direction
@@ -50,8 +49,8 @@ typedef struct s_game
 }				t_game;
 
 int				init(t_game *game);
-void				loop(void *game);
+void			loop(void *game);
 int				draw(t_game *game);
-void on_key_input(mlx_key_data_t event, void *params);
+void			on_key_input(mlx_key_data_t event, void *params);
 
 #endif // SO_LONG_H

@@ -12,9 +12,9 @@ OBJ_DIR	:=	obj
 OBJ		:=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
 
-all: $(NAME)
+all: libmlx $(NAME)
 
-$(NAME): $(OBJ) | libft libmlx
+$(NAME): $(OBJ) | libft
 	@$(CC) $(CFLAGS) $(HEADERS) $^ -o $@ $(LIBS)
 	@echo "[$(NAME)] Created binary."
 
