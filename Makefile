@@ -31,8 +31,8 @@ libft:
 libmlx:
 	@if [ ! -d "MLX42" ]; then \
 		git clone https://github.com/codam-coding-college/MLX42.git; \
+		cmake MLX42 -B MLX42/build && make -C MLX42/build -j4; \
 	fi
-	@cmake MLX42 -B MLX42/build && make -C MLX42/build -j4
 
 clean:
 	@make -C libft clean
