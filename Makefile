@@ -1,10 +1,9 @@
 NAME	:=	so_long
 
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror
-HEADERS	=	-Iinclude -Ilibft -Imlx
-LIBS	=	-Llibft -lft -lm -Lmlx -lmlx
-FRMWRKS	=	-framework OpenGL -framework AppKit
+CFLAGS	=	-Wall -Wextra -Werror -Wunreachable-code -Ofast
+HEADERS	=	-Iinclude -Ilibft -IMLX42/include
+LIBS	=	-Llibft -lft -lm -LMLX42/build -lmlx42 -ldl -lglfw -pthread
 
 VPATH	:=	src
 SRC		=	main.c init.c loop.c input.c draw.c
@@ -13,10 +12,10 @@ OBJ_DIR	:=	obj
 OBJ		:=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
 
-all: $(NAME)
+all: libmlx $(NAME)
 
-$(NAME): $(OBJ) | libft mlx
-	@$(CC) $(CFLAGS) $(HEADERS) $^ -o $@ $(LIBS) $(FRMWRKS)
+$(NAME): $(OBJ) | libft
+	@$(CC) $(CFLAGS) $(HEADERS) $^ -o $@ $(LIBS)
 	@echo "[$(NAME)] Created binary."
 
 $(OBJ_DIR)/%.o: %.c
@@ -29,12 +28,18 @@ $(OBJ_DIR)/%.o: %.c
 libft:
 	@make -C libft
 
-mlx:
-	@make -C mlx
+libmlx:
+	@if [ ! -d "MLX42" ]; then \
+		git clone https://github.com/codam-coding-college/MLX42.git; \
+	fi
+	@cmake MLX42 -B MLX42/build && make -C MLX42/build -j4
 
 clean:
 	@make -C libft clean
-	@make -C mlx clean
+	@if [ -d "MLX42" ]; then \
+		rm -rf MLX42; \
+		echo "[$(NAME)] Removed MiniLibX."; \
+	fi
 	@if [ -d "$(OBJ_DIR)" ]; then \
 		rm -rf $(OBJ_DIR); \
 		echo "[$(NAME)] Removed object files."; \
@@ -49,4 +54,4 @@ fclean: clean
 
 re:	fclean all
 
-.PHONY: all libft mlx clean fclean re
+.PHONY: all libft libmlx clean fclean re
