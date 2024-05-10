@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:09:24 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/10 12:31:15 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/10 13:18:51 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	loop(void *params)
 		- ((game->input_direction & LEFT) != 0);
 	game->player.direction.y = ((game->input_direction & DOWN) != 0)
 		- ((game->input_direction & UP) != 0);
-	game->player.position.x += game->player.direction.x * PLAYER_MOVE_SPEED * game->mlx->delta_time;
-	game->player.position.y += game->player.direction.y * PLAYER_MOVE_SPEED * game->mlx->delta_time;
+	game->player.position.x += game->player.direction.x * PLAYER_MOVE_SPEED
+		* game->mlx->delta_time;
+	game->player.position.y += game->player.direction.y * PLAYER_MOVE_SPEED
+		* game->mlx->delta_time;
 	draw(game);
 }
