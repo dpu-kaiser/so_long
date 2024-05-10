@@ -6,7 +6,7 @@ HEADERS	=	-Iinclude -Ilibft -IMLX42/include
 LIBS	=	-Llibft -lft -lm -LMLX42/build -lmlx42 -ldl -lglfw -pthread
 
 VPATH	:=	src
-SRC		=	main.c init.c loop.c input.c draw.c
+SRC		=	main.c init.c loop.c input.c draw.c tilemap.c
 
 OBJ_DIR	:=	obj
 OBJ		:=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
