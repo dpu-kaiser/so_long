@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:50:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/10 12:11:01 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/10 12:13:33 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,18 @@ static void	init_player(t_player *player, int x, int y);
 
 int	init(t_game *game)
 {
+	mlx_texture_t	*texture;
+
 	game->mlx = mlx_init(1920, 1080, "so_long", false);
 	// TODO: make size and title dynamic
 	game->input_direction = ZERO;
 	init_hooks(game);
 	init_player(&game->player, 960, 540);
 	// TODO: make player spawn point dynamic
-	mlx_texture_t *texture = mlx_load_png("textures/player.png");
+	texture = mlx_load_png("textures/player.png");
 	game->player.img = mlx_texture_to_image(game->mlx, texture);
-	mlx_image_to_window(game->mlx, game->player.img, game->player.position.x, game->player.position.y);
+	mlx_image_to_window(game->mlx, game->player.img, game->player.position.x,
+		game->player.position.y);
 	return (0);
 }
 

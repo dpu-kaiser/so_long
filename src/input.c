@@ -6,17 +6,17 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:37:40 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/10 12:11:48 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/10 12:13:22 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void on_key_input(mlx_key_data_t event, void *params)
+void	on_key_input(mlx_key_data_t event, void *params)
 {
-	t_game *game;
+	t_game	*game;
 
-	game = (t_game *) params;
+	game = (t_game *)params;
 	if (event.action == MLX_PRESS)
 	{
 		if (event.key == MLX_KEY_W || event.key == MLX_KEY_UP)
