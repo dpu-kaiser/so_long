@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/09 19:24:00 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/10 10:55:30 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define PLAYER_MOVE_SPEED 3
 
 # include "libft.h"
-# include "mlx.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 
 enum			e_direction
 {
