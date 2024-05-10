@@ -13,7 +13,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define PLAYER_MOVE_SPEED 3
+# define PLAYER_MOVE_SPEED 250
 # include "MLX42/MLX42.h"
 # include "libft.h"
 
@@ -28,8 +28,8 @@ enum			e_direction
 
 typedef struct s_vector
 {
-	int			x;
-	int			y;
+	double		x;
+	double		y;
 }				t_vector;
 
 typedef struct s_player
