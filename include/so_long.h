@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/10 10:55:30 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/10 11:24:42 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # define PLAYER_MOVE_SPEED 3
 
-# include "libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
+# include "libft.h"
 
 enum			e_direction
 {
@@ -36,23 +36,23 @@ typedef struct s_vector
 typedef struct s_player
 {
 	t_vector	position;
-	t_vector    direction;
+	t_vector	direction;
 	t_vector	velocity;
-	void *img;
+	mlx_image_t	*img;
 }				t_player;
 
 typedef struct s_game
 {
-	void		*mlx;
+	mlx_t		*mlx;
 	void		*window;
 	t_player	player;
 	int			input_direction;
 }				t_game;
 
 int				init(t_game *game);
-int				loop(t_game *game);
+void				loop(void *game);
 int				draw(t_game *game);
-int				on_key_down(int key, t_game *game);
+void				on_key_down(mlx_key_data_t keydata, void *params);
 int				on_key_up(int keycode, t_game *game);
 
 #endif // SO_LONG_H

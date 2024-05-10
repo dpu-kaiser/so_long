@@ -14,7 +14,7 @@ OBJ		:=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
 all: $(NAME)
 
-$(NAME): libmlx $(OBJ) | libft
+$(NAME): $(OBJ) | libft libmlx
 	@$(CC) $(CFLAGS) $(HEADERS) $^ -o $@ $(LIBS)
 	@echo "[$(NAME)] Created binary."
 
