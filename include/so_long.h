@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/10 17:28:23 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/11 16:10:26 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int				load_map_from_file(t_tilemap *tilemap, char *filename);
 int				init(t_game *game);
 void			loop(void *params);
 int				draw(t_game *game);
+int				draw_map(t_game *game);
 void			on_key_input(mlx_key_data_t event, void *params);
 
 #endif // SO_LONG_H
