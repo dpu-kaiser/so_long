@@ -6,11 +6,12 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:47:01 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/10 17:26:17 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/11 16:19:50 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
 #include "so_long.h"
 
 static t_ivector	get_map_size_from_file(int fd);
@@ -80,27 +81,38 @@ static int	load_tiles_from_file(t_tilemap *tilemap, int fd)
 	next_line = get_next_line(fd);
 	while (next_line)
 	{
-		if (load_tiles_from_line(tilemap, l, next_line))
+		if (load_tiles_from_line(tilemap, l++, next_line))
 			return (1);
 		next_line = get_next_line(fd);
-		l++;
 	}
 	return (0);
 }
 
 static int	load_tiles_from_line(t_tilemap *tilemap, int l, char *line)
 {
-	int	x;
+	t_ivector	pos;
+	static int	found_player_start;
+	static int	found_exit;
 
-	x = 0;
-	while (line[x] && line[x] != '\n')
+	pos.x = 0;
+	pos.y = l;
+	while (line[pos.x] && line[pos.x] != '\n')
 	{
-		if (line[x] == EMPTY || line[x] == WALL || line[x] == COLLECTIBLE
-			|| line[x] == PLAYER_START || line[x] == EXIT)
-			tilemap->tiles[l * tilemap->grid_size.x + x] = line[x];
-		else
+		if (line[pos.x] != '0' && line[pos.x] != '1' && line[pos.x] != 'C'
+			&& line[pos.x] != 'P' && line[pos.x] != 'E')
 			return (1);
-		line++;
+		if (line[pos.x] == PLAYER_START && !found_player_start)
+		{
+			tilemap->player_start_tile = pos;
+			found_player_start = 1;
+		}
+		else if (line[pos.x] == EXIT && !found_exit)
+		{
+			tilemap->exit_tile = pos;
+			found_exit = 1;
+		}
+		tilemap->tiles[l * tilemap->grid_size.x + pos.x] = line[pos.x];
+		pos.x++;
 	}
 	return (0);
 }

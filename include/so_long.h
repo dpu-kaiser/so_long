@@ -63,6 +63,8 @@ typedef struct s_tilemap
 	t_ivector	grid_size;
 	t_ivector	tile_size;
 	char		*tiles;
+	t_ivector	player_start_tile;
+	t_ivector	exit_tile;
 }				t_tilemap;
 
 typedef struct s_game
