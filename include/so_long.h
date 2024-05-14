@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/14 13:52:05 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/14 14:43:41 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ int				draw_map(t_game *game);
 void			on_key_input(mlx_key_data_t event, void *params);
 t_vector		grid_to_screen_pos(t_ivector grid_pos, t_ivector tile_size);
 t_ivector		screen_to_grid_pos(t_vector screen_pos, t_ivector tile_size);
-int				check_collision(t_vector a_pos, t_vector a_size, t_vector b_pos,
-					t_vector b_size);
+enum e_tile		get_tile(t_tilemap *map, int x, int y);
+int				check_collision(t_vector a_pos, t_ivector a_size,
+					t_vector b_pos, t_ivector b_size);
+int				check_wall_collision(t_vector a_pos, t_ivector a_size,
+					t_tilemap *map);
 
 #endif // SO_LONG_H
