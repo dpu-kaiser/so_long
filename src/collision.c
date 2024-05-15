@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:48:59 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/15 13:20:29 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/15 14:47:26 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,24 +84,24 @@ static int	check_wall_collision_with_cell(t_vector a_pos, t_ivector a_size,
 	return (0);
 }
 
-void move_and_slide(t_player *player, t_tilemap *map, double delta_time)
+void move_and_slide(t_actor *actor, t_tilemap *map, double delta_time)
 {
 	t_vector move_pos;
 
-	move_pos.x = player->position.x + (player->velocity.x * delta_time);
-	move_pos.y = player->position.y;
+	move_pos.x = actor->position.x + (actor->velocity.x * delta_time);
+	move_pos.y = actor->position.y;
 
-	if ((check_wall_collision(move_pos, player->size, map) & (RIGHT | LEFT)) == 0)
-		player->position.x = move_pos.x;
+	if ((check_wall_collision(move_pos, actor->size, map) & (RIGHT | LEFT)) == 0)
+		actor->position.x = move_pos.x;
 	else
-		player->velocity.x = 0;
+		actor->velocity.x = 0;
 
-	move_pos.x = player->position.x;
-	move_pos.y = player->position.y + (player->velocity.y * delta_time);
-	if ((check_wall_collision(move_pos, player->size, map) & (UP | DOWN)) == 0)
-		player->position.y = move_pos.y;
+	move_pos.x = actor->position.x;
+	move_pos.y = actor->position.y + (actor->velocity.y * delta_time);
+	if ((check_wall_collision(move_pos, actor->size, map) & (UP | DOWN)) == 0)
+		actor->position.y = move_pos.y;
 	else
-		player->velocity.y = 0;
+		actor->velocity.y = 0;
 }
 
 int is_on_floor(t_vector pos, t_ivector size, t_tilemap *map)

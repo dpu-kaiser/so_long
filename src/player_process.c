@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:40:05 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/15 13:53:01 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/15 14:46:26 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_vector	get_direction_from_input(t_game *game);
 
 void	player_process(t_game *game)
 {
-	t_player	*player;
+	t_actor	*player;
 
 	player = &game->player;
 	player->direction = get_direction_from_input(game);

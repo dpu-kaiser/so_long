@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/15 14:04:06 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/15 14:48:10 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ typedef struct s_ivector
 	int			y;
 }				t_ivector;
 
-typedef struct s_player
+typedef struct s_actor
 {
 	t_vector	position;
 	t_vector	direction;
 	t_vector	velocity;
 	t_ivector	size;
 	mlx_image_t	*img;
-}				t_player;
+}				t_actor;
 
 typedef struct s_tilemap
 {
@@ -72,7 +72,7 @@ typedef struct s_game
 {
 	mlx_t		*mlx;
 	void		*window;
-	t_player	player;
+	t_actor	player;
 	int			input_direction;
 	t_tilemap	map;
 }				t_game;
@@ -92,7 +92,7 @@ int				check_collision(t_vector a_pos, t_ivector a_size,
 					t_vector b_pos, t_ivector b_size);
 int				check_wall_collision(t_vector a_pos, t_ivector a_size,
 					t_tilemap *map);
-void			move_and_slide(t_player *player, t_tilemap *map,
+void			move_and_slide(t_actor *actor, t_tilemap *map,
 					double delta_time);
 int				is_on_floor(t_vector pos, t_ivector size, t_tilemap *map);
 
