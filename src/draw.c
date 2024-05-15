@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:58:23 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/15 15:09:38 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/15 16:41:15 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "so_long.h"
 
-int	draw_map(t_game *game)
+int	draw_walls(t_game *game)
 {
 	int				x;
 	int				y;
