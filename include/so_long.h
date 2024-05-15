@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/15 15:10:27 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/15 15:19:06 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_vector		grid_to_screen_pos(t_ivector grid_pos, t_ivector tile_size);
 t_ivector		screen_to_grid_pos(t_vector screen_pos, t_ivector tile_size);
 enum e_tile		get_tile(t_tilemap *map, int x, int y);
 int				check_collision(t_collider a, t_collider b);
-int				check_wall_collision(t_collider collider, t_tilemap *map);
+int				check_map_collision(t_collider collider, t_tilemap *map, enum e_tile type);
 void			move_and_slide(t_actor *actor, t_tilemap *map,
 					double delta_time);
 int				is_on_floor(t_collider collider, t_tilemap *map);

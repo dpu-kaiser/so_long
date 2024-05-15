@@ -6,14 +6,14 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:48:59 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/15 15:02:47 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/15 15:19:54 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	check_wall_collision_with_cell(t_collider collider, t_tilemap *map,
-				t_ivector tile);
+static int	check_map_collision_for_tile(t_collider collider, t_tilemap *map,
+				t_ivector tile, enum e_tile type);
 
 /*
  * Checks if a and b are colliding and returns the direction relative to a.
@@ -41,7 +41,7 @@ int	check_collision(t_collider a, t_collider b)
 	return (result);
 }
 
-int	check_wall_collision(t_collider collider, t_tilemap *map)
+int	check_map_collision(t_collider collider, t_tilemap *map, enum e_tile type)
 {
 	int			result;
 	t_ivector	local_tile;
@@ -59,7 +59,7 @@ int	check_wall_collision(t_collider collider, t_tilemap *map)
 		{
 			check_tile.x = local_tile.x + x;
 			check_tile.y = local_tile.y + y;
-			result |= check_wall_collision_with_cell(collider, map, check_tile);
+			result |= check_map_collision_for_tile(collider, map, check_tile, type);
 			y++;
 		}
 		x++;
@@ -67,17 +67,17 @@ int	check_wall_collision(t_collider collider, t_tilemap *map)
 	return (result);
 }
 
-static int	check_wall_collision_with_cell(t_collider collider, t_tilemap *map,
-		t_ivector tile)
+static int	check_map_collision_for_tile(t_collider collider, t_tilemap *map,
+		t_ivector tile, enum e_tile type)
 {
-	t_collider	wall;
+	t_collider	tile_collider;
 
-	if (get_tile(map, tile.x, tile.y) == WALL)
+	if (get_tile(map, tile.x, tile.y) == type)
 	{
-		wall.position = grid_to_screen_pos(tile, map->tile_size);
-		wall.size.x = map->tile_size.x;
-		wall.size.y = map->tile_size.y;
-		return (check_collision(collider, wall));
+		tile_collider.position = grid_to_screen_pos(tile, map->tile_size);
+		tile_collider.size.x = map->tile_size.x;
+		tile_collider.size.y = map->tile_size.y;
+		return (check_collision(collider, tile_collider));
 	}
 	return (0);
 }
@@ -89,13 +89,13 @@ void	move_and_slide(t_actor *actor, t_tilemap *map, double delta_time)
 	c.size = actor->size;
 	c.position.x = actor->position.x + (actor->velocity.x * delta_time);
 	c.position.y = actor->position.y;
-	if ((check_wall_collision(c, map) & (RIGHT | LEFT)) == 0)
+	if ((check_map_collision(c, map, WALL) & (RIGHT | LEFT)) == 0)
 		actor->position.x = c.position.x;
 	else
 		actor->velocity.x = 0;
 	c.position.x = actor->position.x;
 	c.position.y = actor->position.y + (actor->velocity.y * delta_time);
-	if ((check_wall_collision(c, map) & (UP | DOWN)) == 0)
+	if ((check_map_collision(c, map, WALL) & (UP | DOWN)) == 0)
 		actor->position.y = c.position.y;
 	else
 		actor->velocity.y = 0;
@@ -104,7 +104,7 @@ void	move_and_slide(t_actor *actor, t_tilemap *map, double delta_time)
 int	is_on_floor(t_collider collider, t_tilemap *map)
 {
 	collider.position.y += 5;
-	if (check_wall_collision(collider, map))
+	if (check_map_collision(collider, map, WALL))
 		return (1);
 	return (0);
 }
