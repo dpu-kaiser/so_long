@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/15 14:48:10 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/15 14:58:14 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ typedef struct s_ivector
 	int			y;
 }				t_ivector;
 
+typedef struct s_collider
+{
+	t_vector position;
+	t_ivector size;
+} t_collider;
+
 typedef struct s_actor
 {
 	t_vector	position;
@@ -88,12 +94,11 @@ void			on_key_input(mlx_key_data_t event, void *params);
 t_vector		grid_to_screen_pos(t_ivector grid_pos, t_ivector tile_size);
 t_ivector		screen_to_grid_pos(t_vector screen_pos, t_ivector tile_size);
 enum e_tile		get_tile(t_tilemap *map, int x, int y);
-int				check_collision(t_vector a_pos, t_ivector a_size,
-					t_vector b_pos, t_ivector b_size);
-int				check_wall_collision(t_vector a_pos, t_ivector a_size,
+int				check_collision(t_collider a, t_collider b);
+int				check_wall_collision(t_collider collider,
 					t_tilemap *map);
 void			move_and_slide(t_actor *actor, t_tilemap *map,
 					double delta_time);
-int				is_on_floor(t_vector pos, t_ivector size, t_tilemap *map);
+int				is_on_floor(t_collider collider, t_tilemap *map);
 
 #endif // SO_LONG_H
