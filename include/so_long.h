@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/15 16:41:49 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/15 17:31:34 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void			loop(void *params);
 void			player_process(t_game *game);
 int				draw(t_game *game);
 int				draw_walls(t_game *game);
+void draw_exit(t_game *game);
 void			on_key_input(mlx_key_data_t event, void *params);
 t_vector		grid_to_screen_pos(t_ivector grid_pos, t_ivector tile_size);
 t_ivector		screen_to_grid_pos(t_vector screen_pos, t_ivector tile_size);

@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:13 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/15 16:41:35 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/15 17:31:46 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int	main(int argc, char *argv[])
 		return (1);
 	init(&game);
 	draw_walls(&game);
+	draw_exit(&game);
 	mlx_loop(game.mlx);
 }
