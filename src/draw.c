@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:58:23 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/11 16:00:17 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/15 15:09:38 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "libft.h"
 #include "so_long.h"
 
-int draw_map(t_game *game)
+int	draw_map(t_game *game)
 {
-	int x;
-	int y;
-	mlx_texture_t *wall_texture;
-	mlx_image_t *wall_image;
+	int				x;
+	int				y;
+	mlx_texture_t	*wall_texture;
+	mlx_image_t		*wall_image;
 
 	wall_texture = mlx_load_png("textures/wall.png");
 	wall_image = mlx_texture_to_image(game->mlx, wall_texture);
@@ -33,7 +33,8 @@ int draw_map(t_game *game)
 		while (y < game->map.grid_size.y)
 		{
 			if (game->map.tiles[y * game->map.grid_size.x + x] == WALL)
-				mlx_image_to_window(game->mlx, wall_image, x * game->map.tile_size.x, y * game->map.tile_size.y);
+				mlx_image_to_window(game->mlx, wall_image, x
+					* game->map.tile_size.x, y * game->map.tile_size.y);
 			y++;
 		}
 		x++;
