@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/14 14:43:41 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/15 12:06:35 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_player
 	t_vector	position;
 	t_vector	direction;
 	t_vector	velocity;
+	t_ivector	size;
 	mlx_image_t	*img;
 }				t_player;
 
@@ -91,5 +92,6 @@ int				check_collision(t_vector a_pos, t_ivector a_size,
 					t_vector b_pos, t_ivector b_size);
 int				check_wall_collision(t_vector a_pos, t_ivector a_size,
 					t_tilemap *map);
+void			move_and_slide(t_player *player, t_tilemap *map);
 
 #endif // SO_LONG_H

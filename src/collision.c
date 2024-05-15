@@ -6,14 +6,14 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:48:59 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/14 14:59:13 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/15 12:06:55 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 static int	check_wall_collision_with_cell(t_vector a_pos, t_ivector a_size,
-				t_tilemap *map, t_ivector tile);
+										   t_tilemap *map, t_ivector tile);
 
 /*
  * Checks if a and b are colliding and returns the direction relative to a.
@@ -82,4 +82,24 @@ static int	check_wall_collision_with_cell(t_vector a_pos, t_ivector a_size,
 		return (check_collision(a_pos, a_size, wall_pos, wall_size));
 	}
 	return (0);
+}
+
+void move_and_slide(t_player *player, t_tilemap *map)
+{
+	t_vector move_pos;
+
+	move_pos.x = player->position.x + player->velocity.x;
+	move_pos.y = player->position.y;
+
+	if ((check_wall_collision(move_pos, player->size, map) & (RIGHT | LEFT)) == 0)
+		player->position.x = move_pos.x;
+	else
+		player->velocity.x = 0;
+
+	move_pos.x = player->position.x;
+	move_pos.y = player->position.y + player->velocity.y;
+	if ((check_wall_collision(move_pos, player->size, map) & (UP | DOWN)) == 0)
+		player->position.y = move_pos.y;
+	else
+		player->velocity.y = 0;
 }
