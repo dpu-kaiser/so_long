@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:19:34 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/15 15:04:31 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/20 17:52:49 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,9 @@ t_ivector	screen_to_grid_pos(t_vector screen_pos, t_ivector tile_size)
 enum e_tile	get_tile(t_tilemap *map, int x, int y)
 {
 	return (map->tiles[y * map->grid_size.x + x]);
+}
+
+void	set_tile(t_tilemap *map, int x, int y, enum e_tile type)
+{
+	map->tiles[y * map->grid_size.x + x] = type;
 }
