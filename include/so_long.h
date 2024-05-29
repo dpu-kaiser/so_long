@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:14:02 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/20 20:07:16 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/29 15:57:34 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ typedef struct s_tilemap
 {
 	t_ivector	grid_size;
 	t_ivector	tile_size;
-	char		*tiles;
+	char  *tiles;
 	t_ivector	player_start_tile;
 	t_ivector	exit_tile;
-	mlx_image_t *collectible_img;
+	mlx_image_t	*collectible_img;
 }				t_tilemap;
 
 typedef struct s_game
@@ -85,6 +85,8 @@ typedef struct s_game
 }				t_game;
 
 int				load_map_from_file(t_tilemap *tilemap, char *filename);
+int				check_map(t_tilemap *map);
+int check_for_valid_path(t_tilemap *map);
 
 int				init(t_game *game);
 void			loop(void *params);
