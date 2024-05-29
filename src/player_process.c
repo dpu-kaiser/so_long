@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:40:05 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/20 20:29:07 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/29 13:15:08 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	player_process(t_game *game)
 	player = &game->player;
 	player->direction = get_direction_from_input(game);
 	player->velocity.x = player->direction.x * PLAYER_MOVE_SPEED;
-	player->velocity.y += 50;
-	if (player->direction.y == -1 && is_on_floor((t_collider){player->position,
-			player->size}, &game->map))
-		player->velocity.y = -1000;
+	player->velocity.y = player->direction.y * PLAYER_MOVE_SPEED;
 	handle_collectible_collision(player, &game->map);
 	handle_exit_collision(player, &game->map);
 	move_and_slide(player, &game->map, game->mlx->delta_time);
