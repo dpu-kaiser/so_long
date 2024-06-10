@@ -6,17 +6,18 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:40:05 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/29 13:15:08 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/06/10 16:28:09 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "MLX42/MLX42.h"
 #include "ft_printf.h"
 #include "so_long.h"
 
 static t_vector	get_direction_from_input(t_game *game);
 static void		handle_collectible_collision(t_actor *player, t_tilemap *map);
 static void		collect_collectible(t_ivector pos, t_tilemap *map);
-static void		handle_exit_collision(t_actor *player, t_tilemap *map);
+static void		handle_exit_collision(t_game *game);
 
 void	player_process(t_game *game)
 {
@@ -27,8 +28,9 @@ void	player_process(t_game *game)
 	player->velocity.x = player->direction.x * PLAYER_MOVE_SPEED;
 	player->velocity.y = player->direction.y * PLAYER_MOVE_SPEED;
 	handle_collectible_collision(player, &game->map);
-	handle_exit_collision(player, &game->map);
-	move_and_slide(player, &game->map, game->mlx->delta_time);
+	handle_exit_collision(game);
+	if (move_and_slide(player, &game->map, game->mlx->delta_time))
+		player->steps++;
 }
 
 static void	handle_collectible_collision(t_actor *player, t_tilemap *map)
@@ -61,11 +63,10 @@ static void	handle_collectible_collision(t_actor *player, t_tilemap *map)
 
 static void	collect_collectible(t_ivector pos, t_tilemap *map)
 {
-	size_t i;
-	t_vector collectible_pos;
-	t_ivector collectible_tile;
+	size_t		i;
+	t_vector	collectible_pos;
+	t_ivector	collectible_tile;
 
-	ft_printf("Collected a collectile.\n");
 	set_tile(map, pos.x, pos.y, EMPTY);
 	i = 0;
 	while (i < map->collectible_img->count)
@@ -82,11 +83,15 @@ static void	collect_collectible(t_ivector pos, t_tilemap *map)
 	}
 }
 
-static void	handle_exit_collision(t_actor *player, t_tilemap *map)
+static void	handle_exit_collision(t_game *game)
 {
 	t_collider	player_collider;
-	size_t i;
+	size_t		i;
+	t_actor		*player;
+	t_tilemap	*map;
 
+	player = &game->player;
+	map = &game->map;
 	player_collider = (t_collider){player->position, player->size};
 	if (check_map_collision(player_collider, map, EXIT))
 	{
@@ -97,7 +102,7 @@ static void	handle_exit_collision(t_actor *player, t_tilemap *map)
 				return ;
 			i++;
 		}
-		exit(0);
+		mlx_close_window(game->mlx);
 	}
 }
 
