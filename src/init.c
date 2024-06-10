@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:50:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/20 18:31:33 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/06/10 15:55:28 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	init_player(t_game *game);
 
 int	init(t_game *game)
 {
-	game->mlx = mlx_init(1920, 1080, "so_long", false);
-	// TODO: make size and title dynamic
 	game->input_direction = ZERO;
 	game->map.tile_size = (t_ivector){48, 48};
+	game->mlx = mlx_init(game->map.grid_size.x * game->map.tile_size.x,
+			game->map.grid_size.y * game->map.tile_size.y, "so_long", false);
 	init_hooks(game);
 	init_player(game);
 	return (0);
@@ -44,6 +44,8 @@ static void	init_player(t_game *game)
 			game->map.tile_size);
 	player->velocity = (t_vector){0, 0};
 	player->size = (t_ivector){44, 44};
+	player->steps = 0;
+	ft_printf("Steps: %d\n", game->player.steps);
 	player->img = mlx_texture_to_image(game->mlx, texture);
 	mlx_resize_image(player->img, player->size.x, player->size.y);
 	mlx_image_to_window(game->mlx, player->img, player->position.x,

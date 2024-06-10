@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:48:59 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/15 15:19:54 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/06/10 15:43:32 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	check_map_collision(t_collider collider, t_tilemap *map, enum e_tile type)
 		{
 			check_tile.x = local_tile.x + x;
 			check_tile.y = local_tile.y + y;
-			result |= check_map_collision_for_tile(collider, map, check_tile, type);
+			result |= check_map_collision_for_tile(collider, map, check_tile,
+					type);
 			y++;
 		}
 		x++;
@@ -82,23 +83,32 @@ static int	check_map_collision_for_tile(t_collider collider, t_tilemap *map,
 	return (0);
 }
 
-void	move_and_slide(t_actor *actor, t_tilemap *map, double delta_time)
+int	move_and_slide(t_actor *actor, t_tilemap *map, double delta_time)
 {
 	t_collider	c;
+	int			is_moving;
 
+	is_moving = 0;
 	c.size = actor->size;
 	c.position.x = actor->position.x + (actor->velocity.x * delta_time);
 	c.position.y = actor->position.y;
 	if ((check_map_collision(c, map, WALL) & (RIGHT | LEFT)) == 0)
+	{
 		actor->position.x = c.position.x;
+		is_moving += (actor->direction.x != 0);
+	}
 	else
 		actor->velocity.x = 0;
 	c.position.x = actor->position.x;
 	c.position.y = actor->position.y + (actor->velocity.y * delta_time);
 	if ((check_map_collision(c, map, WALL) & (UP | DOWN)) == 0)
+	{
 		actor->position.y = c.position.y;
+		is_moving += (actor->direction.y != 0);
+	}
 	else
 		actor->velocity.y = 0;
+	return (is_moving != 0);
 }
 
 int	is_on_floor(t_collider collider, t_tilemap *map)
